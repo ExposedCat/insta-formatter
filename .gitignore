@@ -1,0 +1,12 @@
+# Built app
+build
+
+# Built dependencies
+node_modules
+
+# Temp data
+temp
+output
+
+# Sensitive data
+.env
