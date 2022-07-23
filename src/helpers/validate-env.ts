@@ -16,7 +16,7 @@ function validateEnv() {
 			`Warn: Optional environment variable "${env}" is not specified`
 		)
 	}
-	const requiredEnvs = ['INPUT_DIR', 'OUTPUT_DIR']
+	const requiredEnvs = ['INPUT_DIR', 'OUTPUT_DIR', 'PORT']
 	for (const env of requiredEnvs) {
 		if (env in process.env) {
 			continue

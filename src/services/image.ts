@@ -1,5 +1,12 @@
+import {
+	ResponseName,
+	ImageDimesnsion,
+	ServiceResponse
+} from '../types/index.js'
+
 import Image from 'sharp'
 import { v4 as generateUUID } from 'uuid'
+
 import { createDirIfNotExists, resolvePath } from '../helpers/index.js'
 
 function calcNewImageDimensions(
@@ -8,7 +15,7 @@ function calcNewImageDimensions(
 	ratioX: number,
 	ratioY: number,
 	minimal = true
-): ImageDimesnsions {
+): ImageDimesnsion {
 	let length = width
 	let parts = ratioX
 	if ((minimal && height < length) || height >= length) {
@@ -51,7 +58,7 @@ function getNewImageDimensions(width: number, height: number) {
 	const landscape = Math.abs(aspectRatio - 1.91 / 1)
 
 	const calculate = calcNewImageDimensions.bind(null, width, height)
-	let newDimensions: ImageDimesnsions
+	let newDimensions: ImageDimesnsion
 	let aspectRatioName = AspectRatios.Landscape
 	if (standard < portrait && standard < landscape) {
 		newDimensions = calculate(1, 1)
@@ -68,19 +75,22 @@ function getNewImageDimensions(width: number, height: number) {
 	}
 }
 
-async function formatImage(inputFilename: string) {
+async function formatImage(inputFilePath: string): Promise<ServiceResponse> {
 	let image: Image.Sharp
 	let metadata: Image.Metadata
 	try {
-		image = Image(`${process.env.INPUT_DIR}/${inputFilename}`)
+		image = Image(inputFilePath)
 		metadata = await image.metadata()
 		if (!metadata.width || !metadata.height) {
 			throw ''
 		}
-	} catch {
-		// TODO: Should throw structured error
-		console.error(`Error: Input file is invalid`)
-		process.exit(1)
+	} catch (error) {
+		return {
+			isError: true,
+			data: {
+				errorMessage: ResponseName.InvalidInput
+			}
+		}
 	}
 	const imageData = getNewImageDimensions(metadata.width, metadata.height)
 	const { dominant } = await image.stats()
@@ -105,16 +115,22 @@ async function formatImage(inputFilename: string) {
 		`../../${process.env.OUTPUT_DIR}`
 	)
 	const resultFile = `${resultPath}/${outputFile}.png`
-	// TODO: Can fail
-	await createDirIfNotExists(resultPath)
 	try {
+		await createDirIfNotExists(resultPath)
 		await result.toFile(resultFile)
+		return {
+			isError: false,
+			data: {
+				image: resultFile
+			}
+		}
 	} catch {
-		// TODO: Should throw structured error
-		console.error(
-			`Error: Unexpected error ocurred while trying to write the result to the ${resultFile}`
-		)
-		process.exit(1)
+		return {
+			isError: true,
+			data: {
+				errorMessage: ResponseName.Unknown
+			}
+		}
 	}
 }
 

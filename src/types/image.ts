@@ -1,4 +1,4 @@
-interface ImageDimesnsions {
+interface ImageDimesnsion {
 	image: {
 		width: number
 		height: number
@@ -8,3 +8,5 @@ interface ImageDimesnsions {
 		horizontal: number
 	}
 }
+
+export { ImageDimesnsion }
