@@ -8,6 +8,9 @@
 <a href="https://www.reddit.com/user/ExposedCatDev">
 ![](https://img.shields.io/badge/Reddit-Developer-informational?style=for-the-badge&logo=reddit&logoColor=FF5700&color=FF5700)
 </a>
+<a href="https://app.swaggerhub.com/apis-docs/artem-prokop/insta-formatter/1.0.0">
+![](https://img.shields.io/badge/Swagger-Docs-green?style=for-the-badge&logo=swagger)
+</a>
 
 <img src="./preview.png" alt="App preview">
 
@@ -22,6 +25,7 @@
     <li>Convenient for frontend usage</li>
     <li>Strict code formatting rules</li>
     <li>Scalable file architecture</li>
+    <li>100% of API is <a href="https://app.swaggerhub.com/apis-docs/artem-prokop/insta-formatter/1.0.0">documented</a></li>
     <li>Well-readable git repository with a beautiful README :з</li>
 </ul>
 
@@ -29,7 +33,7 @@
     <h2>💼 TODO</h2>
 </div>
 <ul>
-    <li>Write API documentation</a></li>
+    <li><s>Write API documentation</s></a></li>
     <li>Add option to specify custom aspect ratio</a></li>
     <li>Delete images after formatting</a></li>
 </ul>
@@ -41,6 +45,7 @@
     <li>Programming language: Node.JS</li>
     <li>API: Express.JS</li>
     <li>Running tools: Docker</li>
+    <li>Documentation: Swagger</li>
 </ul>
 
 <div align="center">
