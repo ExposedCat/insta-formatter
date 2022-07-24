@@ -47,14 +47,14 @@ function formResponse(type: ResultType, name: ResponseName, data = {}) {
 				'Internal error occurred. Please try again later'
 			),
 			[ResponseName.InvalidInput]: error(
-				503,
+				400,
 				ErrorType.InvalidInput,
 				'Ivalid image uploaded'
 			)
 		},
 		[ResultType.Success]: {
 			[ResponseName.Root]: success(
-				'Welcome here. Check docs for instructions how to use this API. Use current URL as main API endpoint'
+				'Welcome here.\nUse current URL as main API endpoint\nAPI created by ExposedCat\nGit homepage: https://github.com/ExposedCat/insta-formatter'
 			)
 		}
 	}
