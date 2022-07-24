@@ -24,7 +24,7 @@ const handler: BasicHandler = async (req, res, next) => {
 
 const data: HandlerData = {
 	method: HandlerType.Post,
-	path: '/api/format',
+	path: '/api/format-image',
 	handler,
 	validations: [extractImage]
 }
