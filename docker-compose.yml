@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  insta-formatter-api:
+    image: insta-formatter-api
+    container_name: insta-formatter-api
+    ports:
+      - ${PORT}:${PORT}
+    build: .
+    env_file:
+      - .env
