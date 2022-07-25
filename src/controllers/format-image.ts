@@ -7,6 +7,7 @@ import {
 } from '../types/index.js'
 
 import { extractImage } from '../middlewares/index.js'
+import { deleteFile } from '../helpers/index.js'
 import { formatImage, respond } from '../services/index.js'
 
 const handler: BasicHandler = async (req, res, next) => {
@@ -16,7 +17,14 @@ const handler: BasicHandler = async (req, res, next) => {
 			respond(res, ResultType.Error, data.errorMessage)
 			return
 		}
-		res.status(200).sendFile(data.image)
+		const cleanup = async (source: string) => {
+			await deleteFile(data.image)
+			await deleteFile(source)
+		}
+		res.status(200).sendFile(
+			data.image,
+			cleanup.bind(null, res.locals.image)
+		)
 	} else {
 		respond(res, ResultType.Error, ResponseName.InvalidInput)
 	}

@@ -1,7 +1,7 @@
 import 'express'
 
 interface Locals {
-	image?: string
+	image?: string | null
 }
 
 declare module 'express' {

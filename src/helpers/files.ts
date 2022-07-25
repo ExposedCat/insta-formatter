@@ -8,4 +8,13 @@ async function createDirIfNotExists(path: string) {
 	}
 }
 
-export { createDirIfNotExists }
+async function deleteFile(path: string) {
+	try {
+		await fs.unlink(path)
+	} catch (error) {
+		console.warn(`Can't unlink file:`)
+		console.warn(error)
+	}
+}
+
+export { createDirIfNotExists, deleteFile }
