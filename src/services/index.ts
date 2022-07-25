@@ -1,2 +1,3 @@
 export { respond } from './respond.js'
-export { formatImage } from './image.js'
+export { saveImage } from './save-image.js'
+export { formatImage } from './format-image.js'
