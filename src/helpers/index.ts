@@ -1,5 +1,5 @@
 export { resolvePath } from './resolve-path.js'
 export { validateEnv } from './validate-env.js'
-export { createDirIfNotExists } from './files.js'
+export { createDirIfNotExists, deleteFile } from './files.js'
 export { setHandlers } from './set-controllers.js'
 export { setMiddlewares } from './set-middlewares.js'

@@ -35,7 +35,7 @@
 <ul>
     <li><s>Write API documentation</s></a></li>
     <li>Add option to specify custom aspect ratio</a></li>
-    <li>Delete images after formatting</a></li>
+    <li><s>Delete images after formatting</s></a></li>
 </ul>
 
 <div align="center">
